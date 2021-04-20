@@ -1,0 +1,21 @@
+db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+                MYSQL_DATABASE: biblioteca
+                MYSQL_USER: developer
+                MYSQL_PASSWORD: programaciondaw
+                MYSQL_ROOT_PASSWORD: programaciondaw
+                #MYSQL_ROOT_PASSWORD: 'programaciondaw'
+                #MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        ports:
+                - "6033:3306"
+        volumes:
+                - "./docker/mysql/conf.d:/etc/mysql/conf.d"
+                - "./docker/bd:/home/bd"
+adminer:
+        image: adminer
+        restart: always
+        ports:
+             - "8080:8080"
