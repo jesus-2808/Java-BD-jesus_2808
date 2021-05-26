@@ -47,12 +47,14 @@ public class BibliotecaImpl implements BibliotecaService {
 
 	@Override
 	public List<Libro> listaLibros() {
-		List <Libro> catalogo = new LinkedList<>();
-		Libro a = new Libro ("libr", "ajdjj", Genero.FICCION, "kerro", 89);
-		catalogo.add(a);
-		return catalogo;
+		return librosBD.obtenerDatosLibro();
 	}
 
+
+	@Override
+	public List<Libro> obtenerDatosLibroGenero() {
+		return librosBD.obtenerDatosLibroGenero();
+	}
 
 
 
@@ -67,6 +69,22 @@ public class BibliotecaImpl implements BibliotecaService {
 	public boolean limpiaCatalogo() {
 		return librosBD.truncateLibro();
 		
+	}
+
+
+
+	@Override
+	public List<Libro> listaLibrosBuscaTitulo(String buscaTitulo) {
+		// TODO Auto-generated method stub
+		return librosBD.obtenerDatosTitulo(buscaTitulo);
+	}
+
+
+
+	@Override
+	public List<Libro> maximoPaginas() {
+		// TODO Auto-generated method stub
+		return librosBD.maximoPaginas();
 	}
 
 

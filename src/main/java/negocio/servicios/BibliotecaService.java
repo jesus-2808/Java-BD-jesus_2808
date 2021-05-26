@@ -12,6 +12,10 @@ public interface BibliotecaService {
 
 	List <Libro> listaLibros();
 
+	
+	List <Libro> obtenerDatosLibroGenero();
+	
+
 	boolean inserta(Libro libro);
 
 	boolean actualizaLibro( Libro libro, String isbn);
@@ -19,6 +23,14 @@ public interface BibliotecaService {
 	boolean eliminaLibro(Libro libro);
 	
 	boolean limpiaCatalogo();
+
+	List<Libro> listaLibrosBuscaTitulo(String buscaTitulo);
+
+
+
+	List<Libro> maximoPaginas();
+
+	
 	
 		
 		

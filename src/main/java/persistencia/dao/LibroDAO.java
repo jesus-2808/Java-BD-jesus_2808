@@ -6,7 +6,12 @@ import negocio.vo.Libro;
 
 public interface LibroDAO {
 
+		List<Libro> obtenerDatosTitulo(String buscaTitulo);
+
 		List <Libro> obtenerDatosLibro();
+		
+		List <Libro> obtenerDatosLibroGenero();
+		
 		
 		List <Libro> altaLibro();
 		
@@ -24,4 +29,6 @@ public interface LibroDAO {
 		boolean eliminaLibro(Libro libro);
 
 		boolean truncateLibro();
+
+		List<Libro> maximoPaginas();
 }

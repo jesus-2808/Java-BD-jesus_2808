@@ -3,23 +3,14 @@
  */
 package presentacion;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-
 import negocio.servicios.BibliotecaService;
 import negocio.servicios.impl.BibliotecaImpl;
-import negocio.vo.Libro;
 import negocio.vo.Genero;
-
-import java.lang.ClassNotFoundException;
-import java.sql.*;
+import negocio.vo.Libro;
 
 public class Main {
 	
@@ -49,10 +40,22 @@ public class Main {
 		case 5:
 			List<Libro>libros=servicio.listaLibros();
 			imprimir (libros);
+			break;
+		case 6: 
+			List<Libro>libros2=servicio.obtenerDatosLibroGenero();
+			imprimir (libros2);
 		break;
+		case 7: 
+			List<Libro>libro3=buscaTitulo();
+			imprimir (libro3);
+		break;
+		case 8: 
+			List<Libro>libro4=servicio.maximoPaginas();
+			imprimir (libro4);
 	}
 		}while(opcion!=0);		
 	}
+	
 	
 	private static void borraCatalogo() {
 		
@@ -66,6 +69,9 @@ public class Main {
 		System.out.println("3. Actualización de libro");
 		System.out.println("4. Borrado de catalogo");
 		System.out.println("5. Lista de libros");
+		System.out.println("6. Lista de libros ordenada por genero");
+		System.out.println("7. Informe de libro con título específico");
+		System.out.println("8. Consultar libro con mas paginas");
 }
 	private static int leerOpcion() {
 		int retorno=-1;
@@ -90,6 +96,7 @@ public class Main {
 	else
 		System.out.println("Fallo al eliminar el libro");
 	}
+	
 	private static void insertaLibro() {
 		String datosLibro=obtenerDatosLibro();
 		Libro l = procesaEntrada(datosLibro);
@@ -160,11 +167,21 @@ public class Main {
 		System.out.println(libro);
 		return libro;
 	}
+	
+	private static List<Libro> buscaTitulo() {
+		
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Introduce el título que quieras buscar en el catálogo");
+		String buscaTitulo=sc.nextLine();
+	return servicio.listaLibrosBuscaTitulo(buscaTitulo);
+		
+	
+	}
 
 	private static void imprimir(List<Libro>libros) {
 		String format = "%-10s %-30s %-10s %-20s %-4s %n";
 		String linesp = "--------------------------------";
-		System.out.printf(format, "ISBN", "TITULO", "GENERO", "AUTOR", "PAGINAS");
+		System.out.printf(format, "TITULO", "ISBN", "GENERO", "AUTOR", "PAGINAS");
 		System.out.println(linesp);
 		for (Libro libro : libros) {
 
@@ -176,5 +193,8 @@ public class Main {
 			System.out.println(linesp);
 			
 		}
+		
 	}
+	
+
 }
